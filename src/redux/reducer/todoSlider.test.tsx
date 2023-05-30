@@ -24,11 +24,25 @@ test('should handle a todo being added to an existing list', () => {
 		{"content": "Have a meeting", "id": 2}
 	]}
 
-  expect(reducer(previousState, addToDo('Use Redux'))).toEqual(
-	{"todoList": [
+	expect(reducer(previousState, addToDo('Use Redux'))).toEqual(
+		{"todoList": [
+			{"content": "Learn React Testing", "id": 1},
+			{"content": "Have a meeting", "id": 2},
+			{"content": undefined, "id": 3},
+		]}
+	)
+})
+
+test('should handle a todo being deleted from an existing list', () => {
+	const previousState = {"todoList": [
 		{"content": "Learn React Testing", "id": 1},
-		{"content": "Have a meeting", "id": 2},
-		{"content": undefined, "id": 3},
+		{"content": "Have a meeting", "id": 2}
 	]}
-)
+
+	expect(reducer(previousState, deleteToDo('Have a meeting'))).toEqual(
+		{"todoList": [
+			{"content": "Learn React Testing", "id": 1},
+			{"content": "Have a meeting", "id": 2}
+		]}
+	)
 })
